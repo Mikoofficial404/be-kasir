@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-
     public function index()
     {
         $products = Product::all();
@@ -23,6 +22,7 @@ class ProductController extends Controller
 
         $products = $products->map(function ($product) {
             $product->photo_product = asset('storage/products/' . $product->photo_product);
+
             return $product;
         });
 
@@ -32,7 +32,6 @@ class ProductController extends Controller
             'success' => true,
         ], 200);
     }
-
 
     public function store(Request $request)
     {
@@ -50,7 +49,6 @@ class ProductController extends Controller
                 'success' => false,
             ], 422);
         }
-
 
         $image = $request->file('photo_product');
         $image->store('products', 'public');
@@ -72,7 +70,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        if (!$product) {
+        if (! $product) {
             return response()->json([
                 'message' => 'Data Product Not Found',
                 'success' => false,
@@ -91,7 +89,7 @@ class ProductController extends Controller
     public function edit(Request $request, $id)
     {
         $product = Product::find($id);
-        if (!$product) {
+        if (! $product) {
             return response()->json([
                 'message' => 'Data Product Not Found',
                 'success' => false,
@@ -129,8 +127,6 @@ class ProductController extends Controller
             $data['photo_product'] = $image->hashName();
         }
 
-
-
         return response()->json([
             'message' => 'Product Updated',
             'success' => true,
@@ -138,11 +134,10 @@ class ProductController extends Controller
         ], 200);
     }
 
-
     public function destroy($id)
     {
         $product = Product::find($id);
-        if (!$product) {
+        if (! $product) {
             return response()->json([
                 'message' => 'Product Not Found',
                 'success' => false,
