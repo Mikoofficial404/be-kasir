@@ -24,7 +24,6 @@ Route::get('user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('login', [AuthController::class, 'login']);
-
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
 
@@ -36,6 +35,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::put('transactions/{id}', [SalesDetailsController::class, 'update']);
     Route::delete('transactions/{id}', [SalesDetailsController::class, 'destroy']);
     Route::get('transactionshistory', [SalesController::class, 'index']);
+    Route::get('exportpdf', [SalesController::class, 'exportPdf']);
 });
 
 Route::middleware(['auth:api', 'role:admin'])->group(function () {
