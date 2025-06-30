@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SalesDetailsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('transactions/{id}', [SalesDetailsController::class, 'show']);
     Route::put('transactions/{id}', [SalesDetailsController::class, 'update']);
     Route::delete('transactions/{id}', [SalesDetailsController::class, 'destroy']);
+    Route::get('transactionshistory', [SalesController::class, 'index']);
 });
 
 Route::middleware(['auth:api', 'role:admin'])->group(function () {

@@ -70,6 +70,8 @@ class SalesDetailsController extends Controller
         }
 
         $total = $product->price * $request->quantity;
+
+        // $subtotal = $product->price + $product->price;
         $product->stock -= $request->quantity;
         $product->save();
 

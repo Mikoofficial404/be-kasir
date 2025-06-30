@@ -18,6 +18,7 @@ class SalesDetails extends Model
         'sales_id',
         'quantity',
         'total_amount',
+        // 'subtotal'
     ];
 
     public function user()
